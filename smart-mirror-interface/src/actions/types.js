@@ -1,0 +1,11 @@
+export const FETCH_NEWS = 'FETCH_NEWS';
+export const FETCH_WEATHER = 'FETCH_WEATHER';
+export const FETCH_FORECAST = 'FETCH_FORECAST';
+export const FETCH_REMINDERS = 'FETCH_REMINDERS';
+export const NEW_REMINDER = 'NEW_REMINDER';
+export const FETCH_VOICE = 'FETCH_VOICE';
+export const FETCH_WAKE_WORD = 'FETCH_WAKE_WORD';
+export const CHANGE_MESSAGE = 'CHANGE_MESSAGE';
+export const FETCH_VIDEO_ID = 'FETCH_VIDEO_ID';
+export const STOP_VIDEO = 'STOP_VIDEO';
+export const FETCH_USER = 'FETCH_USER';

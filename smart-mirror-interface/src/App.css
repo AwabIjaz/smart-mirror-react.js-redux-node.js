@@ -1,0 +1,130 @@
+.App {
+  color: white;
+  text-align: center;
+}
+
+.font {
+  font-size: 240%;
+}
+
+#top-widgets{
+  position:fixed; 
+  top: 0px; 
+  width: 100%;
+}
+
+.middlew {
+    position: fixed;
+    margin:auto;
+    top:0;
+    bottom: 0;
+    left:0;
+    right:0;
+    width:50%;
+    height: 10%;
+    text-align: center;
+    color:grey;
+}
+
+#bottom-widgets{
+  position:fixed;
+  bottom: 0px;  
+  width: 100%;
+}
+
+#bottom1{
+  position:absolute; 
+  bottom: 0px;
+}
+
+#middle {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+}
+
+
+
+
+
+.Register {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width:100%;
+  background-color: white;
+  color:black;
+}
+
+.middle {
+    height: 60%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.middle2 {
+    height: 0%;
+    margin-top: -60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.middle3 {
+    position: absolute;
+    margin:auto;
+    top:0;
+    bottom: 0;
+    left:0;
+    right:0;
+    width:160px;
+    height: 50px;
+}
+
+
+/*#top-widgets2{
+  position:fixed; 
+  top: 100px; 
+  width: 100%;
+}*/
+
+
+.headings1 {
+  color:grey;
+}
+
+.headings2 {
+  text-align: center;
+}
+
+.headings3 {
+  margin-top: 40px;
+  color:grey;
+  text-align: center;
+}
+
+.headings4 {
+  margin-top: 10px;
+  color:grey;
+  text-align: center;
+}
+
+
+/*.footer {
+  position: absolute;
+  bottom: 0;
+  left:0;
+  width: 33%;
+}
+
+.footer2 {
+  position: absolute;
+  bottom: 0;
+  right:0;
+  width:33%;
+}*/
+
+
