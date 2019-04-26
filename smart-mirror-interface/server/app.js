@@ -1,80 +1,52 @@
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
-var expressValidator = require('express-validator');
 const cors = require('cors');
+
+var cookieParser = require('cookie-parser');
+var compression = require('compression');
+
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var facialRouter = require('./routes/facial');
-const mongoose = require('mongoose');
-var passport = require('passport');
-var LocalStrategy = require('passport-local').Strategy;
+
+
 var db = require('monk')('mongodb://legolas427:proton27@ds127429.mlab.com:27429/mine');
-
-const options = {
-  useNewUrlParser: true
-};
-mongoose.connect('mongodb://legolas427:proton27@ds127429.mlab.com:27429/mine', options);
-
 require('dotenv').config();
+
+var dest = process.env.WINDOWS_PATH; //change on rpi
+var wake = process.env.PORCUPINE_PATH; //change on rpi
 
 var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'pug');
-
+app.set('view engine', 'jade');
 
 app.use(cors());
-// validator 
-app.use(expressValidator({
-  errorFormatter: function(param, msg, value) {
-      var namespace = param.split('.')
-      , root    = namespace.shift()
-      , formParam = root;
-
-    while(namespace.length) {
-      formParam += '[' + namespace.shift() + ']';
-    }
-    return {
-      param : formParam,
-      msg   : msg,
-      value : value
-    };
-  }
-}));
 
 app.use(function(req,res,next){
   req.db = db;
   next();
 });
 
+//to pass path in all files.
+app.use(function(req,res,next){
+  req.dest = dest;
+  req.wake = wake;
+  next();
+});
 
 
-app.use(expressValidator({
- customValidators: {
-    gte: function(param, num) {
-        return param >= num;
-    }
- }
-}));
-app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(passport.initialize());
-app.use(passport.session());
+
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/facial', facialRouter);
-
-
-
-
 
 
 // catch 404 and forward to error handler

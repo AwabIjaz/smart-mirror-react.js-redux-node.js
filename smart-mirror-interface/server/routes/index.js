@@ -3,14 +3,14 @@ var router = express.Router();
 const request = require('request');
 var myGoogleNews = require('my-google-news');
 myGoogleNews.resultsPerPage = 10; // max 100
-var async = require('async');
+
 
 router.get('/weather', function(req, res, next) {
 	request('http://api.openweathermap.org/data/2.5/weather?q=lahore,pk&appid=' + process.env.WEATHER_API_KEY, (err, response) => {
 		if (err) { 
 			return console.log(err);
 		}
-		res.send(response.body);
+		res.status(200).send(response.body);
 	});
 });
 
@@ -19,17 +19,18 @@ router.get('/forecast', function(req, res, next) {
 		if (err) { 
 			return console.log(err);
 		}
-		res.send(response.body);
+		res.status(200).send(response.body);
 	});
 });
-
 
 router.get('/news', function(req, res, next) {
 	var nextCounter = 0;
 	var googleQuery="pakistan"; //search Query
 	myGoogleNews(googleQuery, function (err, reso){
-		if (err) console.error(err)
-		res.send(reso.links);
+		if (err) {
+			console.error(err)
+		}
+		res.status(200).send(reso.links);
 	  //number of pages if you want more than one page
 	  /*if (nextCounter < 4) {
 		nextCounter += 1
@@ -39,39 +40,63 @@ router.get('/news', function(req, res, next) {
 });
 
 
-//rename this router you shit!
-router.get('/voiceApi', function(req, res, next) {
-	console.log('inside voice api server');
-	var dir = __dirname + "\\python\\voice.py";
-	console.log(dir);
-	console.log("");
-	const spawn = require("child_process").spawn;
-	const pythonProcess = spawn('python',[dir]);
-	pythonProcess.stdout.on('data', (data) => {
-    	res.send(data);
-	});	
-});
-
 router.get('/wakeWord', function(req, res, next) {
 	console.log('inside wakeword server');
-	const spawn = require("child_process").spawn;
-	const pythonProcess = spawn('python',["E:\\Porcupine-1.3\\demo\\python\\porcupine_demo.py", "--keyword_file_paths", "E:\\Porcupine-1.3\\smartmirror_windows.ppn"]);
+	const file = req.wake + "demo/python/porcupine_demo.py"
+	const model = req.wake + "smartmirror_windows.ppn"
+
+	const { spawn } = require("child_process");
+	const pythonProcess = spawn('python',[file,"--keyword_file_paths" ,model]);
 	pythonProcess.stdout.on('data', (data) => {
-    	res.send(data);
-	});	
+		console.log('was here');
+		res.status(200).send(data);
+	});
+	/*pythonProcess.on('close', (code) => {
+		if (code !== 0) {
+			console.log(`process exited with code ${code}`);
+			res.status(504).send('Service unavailable')	
+		}
+		else{
+			console.log('wakeword pid = ' + pythonProcess.pid);
+			pythonProcess.kill('SIGKILL');
+		}
+	});*/
 });
 
-//rename this router you shit!
-router.get('/exp', function(req, res, next){
-	console.log('inside voice experiment');
-	var dir = __dirname + "\\python\\finalDraft.py";
-	const spawn = require("child_process").spawn;
-	const pythonProcess = spawn('python',[dir]);
+router.get('/commands', function(req, res, next){
+	console.log('inside voice commands');
+	var file = req.dest + "finalDraft.py";
+	const { spawn } = require("child_process");
+	const pythonProcess = spawn('python',[file]);
 	pythonProcess.stdout.on('data', (data) => {
 		var resq = data.toString('utf8').split(/\r?\n/);
-    	resq.length = 4;
-    	console.log(resq);
-		res.send(resq);
+		console.log(resq)
+		resq.length = 4;
+		res.status(200).send(resq);
+	});
+	/*pythonProcess.on('close', (code) => {
+		if (code !== 0) {
+			console.log(`process exited with code ${code}`);
+			res.send('Service unavailable')
+		}
+		else{
+			console.log('commands pid = ' + pythonProcess.pid);
+			pythonProcess.kill('SIGKILL');
+		}
+	});*/
+});
+
+//just to test if a script is spawning
+router.get('/experimental', function(req, res, next){
+	var exec = require('child_process').exec;
+	console.log('in exp new');
+	exec('python /home/pi/porc/sm/server/routes/python/finalDraft.py', function(error, stdout, stderr) {
+		console.log('in here');
+		console.log('stdout: ' + stdout);
+		if (error !== null) {
+			console.log('exec error: ' + error);
+		}
 	});
 });
+
 module.exports = router;
