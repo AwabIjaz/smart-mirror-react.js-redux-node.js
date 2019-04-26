@@ -1,0 +1,65 @@
+.middleAll {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.absoluteMiddle {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top:0;
+    bottom: 0;
+    left:0;
+    right:0;
+    width: 70%;
+    margin: auto;
+}
+
+#theHeading {
+  margin-top: 3%;
+  margin-bottom: 10%;
+  color:grey;
+  text-align: center;
+}
+
+span {
+    padding: 1%;
+}
+
+.portalHeading {
+  color: grey;
+  margin-left: -9%;
+  margin-top: -2.5%;
+}
+
+.headingAccount {
+  text-align: center;
+}
+
+.errors {
+  display: flex;
+  color: red;
+}
+
+#settingHeading {
+  margin-top: 1%;
+  color:grey;
+  text-align: center;
+}
+
+.form{
+  width: 50%;
+  margin: auto;
+}
+
+.form :hover { cursor: pointer; }
+
+#bottom-widgets{
+  position:fixed;
+  bottom: 0px;  
+  width: 100%;
+}
