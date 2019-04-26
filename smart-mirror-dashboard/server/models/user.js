@@ -7,7 +7,9 @@ const UserSchema = mongoose.Schema({
         required: true
     },
     username: {
-        type: String
+        type: String,
+        unique: true,
+        required:true
     },
     email: {
         type: String,
@@ -45,6 +47,24 @@ module.exports.createUser =  function(newUser, callback){
         // Set hashed password
         newUser.password = hash;
         //create user
+        console.log('idhar')
         newUser.save(callback);
+        console.log('udhar')
+    });
+}
+
+
+module.exports.changePassword =  function(newUser, callback){
+    bcrypt.hash(newUser.password, 10, function(err, hash){
+        console.log('in bcrypt')
+        console.log(newUser);
+        console.log(hash);
+        newUser.password = hash;
+        User.findOne({email: newUser.email}, function (err, user) {
+            console.log(user)
+            user.password = newUser.password;
+            console.log(user)
+            user.save(callback);
+        });
     });
 }
