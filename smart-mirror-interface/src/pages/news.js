@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import FadeProps from 'fade-props';
 import { connect } from 'react-redux';
 import { fetchNews } from '../actions/newsActions';
+import '../App.css';
 
 
 class News extends Component {
@@ -38,7 +39,7 @@ class News extends Component {
 			news = this.props.news.slice(this.state.i, this.state.j)
 		}
     	return news.map(function(object, i){
-            return <p obj={object} key={i}> {object.title} </p>
+            return <p className="pfont" obj={object} key={i}> {object.title} </p>
         });
     }
 

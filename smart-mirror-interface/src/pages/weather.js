@@ -12,7 +12,7 @@ class Weather extends Component {
 
 	getWeather(){
     	return	<div>
-					<WeatherIcon style={{color:"brown"}} name="owm" iconId={this.props.weatherIconId} size="3x"/> {this.props.status}
+					<WeatherIcon style={{color:"white"}} name="owm" iconId={this.props.weatherIconId} size="3x"/> {this.props.status}
 					<br/>{this.props.temperature}°C		
 				</div>
     }

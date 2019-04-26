@@ -3,6 +3,9 @@ import FadeProps from 'fade-props';
 import { connect } from 'react-redux';
 import { fetchReminders } from '../actions/remindersActions';
 import { createReminder } from "../actions/voiceActions";
+import openSocket from 'socket.io-client';
+
+const socket = openSocket('https://apes427.herokuapp.com');
 
 
 class Reminders extends Component {
@@ -15,22 +18,28 @@ class Reminders extends Component {
 	}
 
 	componentDidMount(){
-			
-			this.props.fetchReminders(this.props.rems.username); 
 
-			this.intervalId = setInterval(() => {
-				if(this.props.reminders.length > 3 && this.props.modal !== true){
-					if(this.props.reminders.length%2 === 0 && this.props.reminders[this.state.j] === undefined){
-						this.resetArr()
-					}
-					else if(this.props.reminders.length%2 === 1 && this.props.reminders[this.state.j+1] === undefined){
-						this.resetArr()
-					}
-					else{
-			      		this.setState({i:this.state.i+2, j:this.state.j+2})
-			      	}
-			    }
-		    }, 3000);
+		socket.on('reminders', (response) => {
+			console.log(response);
+			console.log(this.props.reminders);
+			this.props.fetchReminders(this.props.rems.username);
+		});
+			
+		this.props.fetchReminders(this.props.rems.username); 
+
+		this.intervalId = setInterval(() => {
+			if(this.props.reminders.length > 3 && this.props.modal !== true){
+				if(this.props.reminders.length%2 === 0 && this.props.reminders[this.state.j] === undefined){
+					this.resetArr()
+				}
+				else if(this.props.reminders.length%2 === 1 && this.props.reminders[this.state.j+1] === undefined){
+					this.resetArr()
+				}
+				else{
+		      		this.setState({i:this.state.i+2, j:this.state.j+2})
+		      	}
+		    }
+	    }, 3000);
                                                                                                                  
 	}
 
@@ -55,7 +64,6 @@ class Reminders extends Component {
 
 		}
 
-
 	}
 
 	resetArr(){
@@ -65,7 +73,7 @@ class Reminders extends Component {
 	get_reminders(){
 
     	if(this.props.reminders.length < 1){
-    		return <p> no reminders yet </p>
+    		return <p className="pfont"> no reminders yet </p>
     	}
 
     	else{
@@ -101,7 +109,7 @@ class Reminders extends Component {
 		    		else{
 		    			diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24)) + ' days';
 		    		}
-		            return <p obj={object} key={i}>{object.description} - {diffDays}</p>;
+		            return <p  className="pfont" obj={object} key={i}>{object.description} - {diffDays}</p>;
 		        });
 		    }
     }

@@ -31,7 +31,7 @@ export default class DateAndTime extends Component {
 	          <p className="font">
 	            {this.state.time}
 	          </p>
-	          <p>
+	          <p className="pfont">
 	          	{this.state.date}
 	          </p>
           </div>

@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import YouTube from 'simple-youtube-api';
 import { connect } from 'react-redux';
 import { fetchVideoId, stopVideo } from '../actions/voiceActions';
+import '../App.css';
 
 const youtube = new YouTube('AIzaSyBUBeKwRpSd32kMkP4qCHDFYstAZ3iU6VY');
 
@@ -23,7 +24,7 @@ class Video extends Component {
     		let videoUrl = 'https://www.youtube.com/embed/' + this.props.videoId + '?autoplay=1&mute=0';
     		console.log(videoUrl);
     		return  <div>                  
-				    	<iframe title="This is a unique title" width="400" height="250" src={videoUrl} allow="autoplay"></iframe>
+				    	<iframe className={this.props.size} title="This is a unique title" src={videoUrl} allow="autoplay"></iframe>
 					</div>	          	
     	}
     }
