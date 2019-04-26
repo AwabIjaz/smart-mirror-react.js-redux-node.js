@@ -3,6 +3,7 @@ export const FETCH_WEATHER = 'FETCH_WEATHER';
 export const FETCH_FORECAST = 'FETCH_FORECAST';
 export const FETCH_REMINDERS = 'FETCH_REMINDERS';
 export const NEW_REMINDER = 'NEW_REMINDER';
+export const NEW_ALARM = 'NEW_ALARM';
 export const FETCH_VOICE = 'FETCH_VOICE';
 export const FETCH_WAKE_WORD = 'FETCH_WAKE_WORD';
 export const CHANGE_MESSAGE = 'CHANGE_MESSAGE';
