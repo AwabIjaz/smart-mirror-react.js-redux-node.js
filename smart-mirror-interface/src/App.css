@@ -1,130 +1,50 @@
-.App {
+.App{
   color: white;
   text-align: center;
 }
 
-.font {
-  font-size: 240%;
+.font{
+  font-size: calc(1.5vw + 1.8vh + 1vmin);
 }
 
-#top-widgets{
-  position:fixed; 
-  top: 0px; 
-  width: 100%;
+.pfont{
+  font-size: calc(0.52vw + 0.9vh + 0.5vmin);
 }
 
-.middlew {
-    position: fixed;
-    margin:auto;
-    top:0;
-    bottom: 0;
-    left:0;
-    right:0;
-    width:50%;
-    height: 10%;
-    text-align: center;
-    color:grey;
+.middlew{
+  position:fixed;
+  margin:auto;
+  top:0;
+  bottom: 0;
+  left:0;
+  right:0;
+  width:33.5%;
+  height:15%;
+  text-align:center;
+  color:lightgrey;
+  font-size: calc(1.2vw + 1.6vh + 0.8vmin);
 }
 
 #bottom-widgets{
   position:fixed;
   bottom: 0px;  
   width: 100%;
+  display: flex;
+  align-items: flex-end;
 }
 
-#bottom1{
-  position:absolute; 
-  bottom: 0px;
+.resp-container {
+    position: relative;
+    overflow: hidden;
+    padding-top: 58%;
 }
 
-#middle {
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  text-align: center;
+.resp-iframe {
+    width: 100%;
+    height: calc(9vw + 13vh + 6vmin);
 }
 
-
-
-
-
-.Register {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width:100%;
-  background-color: white;
-  color:black;
+.modal-iframe {
+    width: 700px;
+    height: 400px;
 }
-
-.middle {
-    height: 60%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.middle2 {
-    height: 0%;
-    margin-top: -60px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.middle3 {
-    position: absolute;
-    margin:auto;
-    top:0;
-    bottom: 0;
-    left:0;
-    right:0;
-    width:160px;
-    height: 50px;
-}
-
-
-/*#top-widgets2{
-  position:fixed; 
-  top: 100px; 
-  width: 100%;
-}*/
-
-
-.headings1 {
-  color:grey;
-}
-
-.headings2 {
-  text-align: center;
-}
-
-.headings3 {
-  margin-top: 40px;
-  color:grey;
-  text-align: center;
-}
-
-.headings4 {
-  margin-top: 10px;
-  color:grey;
-  text-align: center;
-}
-
-
-/*.footer {
-  position: absolute;
-  bottom: 0;
-  left:0;
-  width: 33%;
-}
-
-.footer2 {
-  position: absolute;
-  bottom: 0;
-  right:0;
-  width:33%;
-}*/
-
-
